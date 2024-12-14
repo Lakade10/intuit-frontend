@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Frontend Challenge - Weather App</h1>
   </div>
+  <BuscadorCiudades @mostrar-proximos-5-dias="manejarProximos5Dias"/>
+  <BuscadorHistorico v-if="ciudadSeleccionada" :ciudad="ciudadSeleccionada"/>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script setup>
+import BuscadorCiudades from '@/components/BuscadorCiudades.vue';
+import BuscadorHistorico from '@/components/BuscadorHistorico.vue';
+import {ref } from 'vue';
 
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+const ciudadSeleccionada = ref();
+
+const manejarProximos5Dias = (ciudad) => {
+  ciudadSeleccionada.value = ciudad;
+};
+
 </script>
